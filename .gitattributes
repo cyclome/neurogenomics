@@ -1,0 +1,5 @@
+# Keep line endings stable across Windows and the Linux runners in Actions —
+# otherwise every checkout looks like a whole-file diff.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
