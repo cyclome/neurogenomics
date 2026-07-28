@@ -239,7 +239,30 @@ async function main() {
   await write({ generated: new Date().toISOString(), count: items.length, items });
 }
 
+// Read back what is already on disk, so an unchanged list can be left alone.
+async function existingItems() {
+  try {
+    const code = await readFile(OUT_FILE, 'utf8');
+    const sandbox = { window: {} };
+    vm.runInNewContext(code, sandbox, { filename: 'publications.js' });
+    return sandbox.window.NG_PUBLICATIONS?.items ?? null;
+  } catch {
+    return null;                          // missing or unparseable: just rewrite it
+  }
+}
+
 async function write(payload) {
+  // `generated` is a fresh timestamp on every run, so writing unconditionally
+  // would produce a commit and a Pages rebuild every week even when nothing
+  // changed. Compare the publications themselves instead — which also makes
+  // "Last updated" on the page mean "when the list last changed", not "when the
+  // robot last ran".
+  const before = await existingItems();
+  if (before && JSON.stringify(before) === JSON.stringify(payload.items)) {
+    log(`No change — data/publications.js left as it is (${payload.count} publication(s)).`);
+    return;
+  }
+
   const banner =
     '/* GENERATED FILE — do not edit by hand.\n' +
     '   Rebuilt by scripts/fetch_publications.mjs from the ORCID iDs in data/team.js,\n' +

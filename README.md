@@ -94,6 +94,9 @@ Two things worth knowing:
   to public visibility, or their papers will be silently missing.
 - **The list is everything on those ORCID records**, including work from before people
   joined the group. That is the trade-off for a list that maintains itself.
+- **"Last updated" on the page means "when the list last changed"**, not "when the job
+  last ran". A run that finds nothing new leaves the file completely alone, so an
+  unchanged week produces no commit and no rebuild.
 
 If the run fails it exits non-zero and leaves `data/publications.js` untouched — a
 visibly failed job beats a silently emptied list.
