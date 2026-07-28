@@ -2,7 +2,7 @@
    Rebuilt by scripts/fetch_publications.mjs from the ORCID iDs in data/team.js,
    and weekly by .github/workflows/publications.yml. */
 window.NG_PUBLICATIONS = {
-  "generated": "2026-07-28T12:34:56.209Z",
+  "generated": "2026-07-28T15:54:05.756Z",
   "count": 297,
   "items": [
     {
