@@ -1,0 +1,45 @@
+name: Refresh publications
+
+# Rebuilds data/publications.js from the ORCID iDs in data/team.js and commits
+# it if anything changed. Pushing to main triggers the normal Pages deploy.
+
+on:
+  schedule:
+    - cron: '17 4 * * 1'        # Mondays, 04:17 UTC
+  workflow_dispatch:            # "Run workflow" button in the Actions tab
+  push:
+    paths:
+      - 'data/team.js'          # a new member (or a new ORCID iD) refreshes now
+      - 'scripts/fetch_publications.mjs'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publications
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch from ORCID + Crossref
+        run: node scripts/fetch_publications.mjs
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data/publications.js; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/publications.js
+          git commit -m "chore: refresh publications from ORCID"
+          git push
