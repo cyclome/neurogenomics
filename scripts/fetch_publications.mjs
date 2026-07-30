@@ -30,7 +30,7 @@ const TEAM_FILE = join(ROOT, 'data', 'team.js');
 const OUT_FILE = join(ROOT, 'data', 'publications.js');
 
 const CONTACT = 'thomas.folkmann.hansen@regionh.dk';
-const UA = `neurogenomics.dk publication list (+https://neurogenomics.dk; mailto:${CONTACT})`;
+const UA = `neurogenomic.dk publication list (+https://neurogenomic.dk; mailto:${CONTACT})`;
 
 // Crossref work types we treat as publications.
 const KEEP_TYPES = new Set(['journal-article', 'posted-content', 'proceedings-article', 'book-chapter']);

@@ -1,10 +1,10 @@
-# neurogenomics.dk
+# neurogenomic.dk
 
 Website for the **Neurogenomics** research group. Static site — plain HTML, CSS and
 JavaScript, no build step, no dependencies, no third-party requests. Hosted on GitHub
 Pages.
 
-Live: **https://neurogenomics.dk**
+Live: **https://neurogenomic.dk**
 
 Open `index.html` straight from disk to preview it — data is loaded as plain script
 files rather than with `fetch()`, so `file://` works and no local server is needed.
@@ -17,7 +17,7 @@ styles.css          every colour lives in the two token blocks at the top
 app.js              scroll reveal, scroll-spy, renders the data files
 logo.svg            source artwork; also inlined into index.html (see below)
 favicon.svg         generated — a crop of the logo's helix
-CNAME               neurogenomics.dk
+CNAME               neurogenomic.dk
 data/
   team.js           current members  ← drives the publication list
   alumni.js         former members
@@ -108,7 +108,7 @@ root; `.nojekyll` stops GitHub from running Jekyll over the files.
 
 ### DNS (one-time)
 
-At the registrar for `neurogenomics.dk`:
+At one.com, for `neurogenomic.dk`:
 
 | Type    | Name | Value |
 | ------- | ---- | ----- |
@@ -116,15 +116,24 @@ At the registrar for `neurogenomics.dk`:
 | `A`     | `@`  | `185.199.109.153` |
 | `A`     | `@`  | `185.199.110.153` |
 | `A`     | `@`  | `185.199.111.153` |
-| `CNAME` | `www`| `neurogenomics.github.io` |
+| `CNAME` | `www`| `cyclome.github.io` |
 
 Optionally add `AAAA` records for `@`: `2606:50c0:8000::153`, `2606:50c0:8001::153`,
 `2606:50c0:8002::153`, `2606:50c0:8003::153`.
 
-Once DNS has propagated, tick **Enforce HTTPS** in Settings → Pages.
+**HTTPS cannot be enabled before this is done.** GitHub gets its certificate from
+Let's Encrypt, which validates by requesting the domain over HTTP — with no `A`
+record there is nothing to validate against, so the certificate is simply never
+issued. Once the records resolve, GitHub issues one within minutes and **Enforce
+HTTPS** in Settings → Pages becomes tickable.
 
-`neurogenomics.group` needs a 301 redirect to `neurogenomics.dk` set up at the
-registrar — GitHub Pages serves one domain per `CNAME` file and cannot do this.
+### The other three domains
+
+`neurogenomics.dk`, `neurogenomics.group` and `neurogenomic.group` each redirect here
+from their own tiny GitHub Pages repo — see `../neurogenomics-redirects/`. GitHub Pages
+serves one domain per `CNAME` file, so a separate repo per domain is the only way to do
+it on Pages. one.com charges for web forwarding; this costs nothing, and plain DNS
+records are included with the domains.
 
 ## Still to do
 

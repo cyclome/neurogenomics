@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Neurogenomics — neurogenomics.dk
+   Neurogenomics — neurogenomic.dk
    No dependencies, no build step. Data comes from the data/*.js files loaded
    just before this one (window.NG_TEAM / NG_FUNDERS / NG_PUBLICATIONS).
    Plain globals rather than fetch(), so the site also works when opened
