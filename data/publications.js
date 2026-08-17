@@ -2,8 +2,8 @@
    Rebuilt by scripts/fetch_publications.mjs from the ORCID iDs in data/team.js,
    and weekly by .github/workflows/publications.yml. */
 window.NG_PUBLICATIONS = {
-  "generated": "2026-07-28T15:54:05.756Z",
-  "count": 297,
+  "generated": "2026-08-17T05:01:05.396Z",
+  "count": 299,
   "items": [
     {
       "doi": "10.1111/apm.70235",
@@ -35,6 +35,26 @@ window.NG_PUBLICATIONS = {
         "Eva R. Hoffmann"
       ],
       "journal": "Reproductive BioMedicine Online",
+      "year": 2026,
+      "preprint": false
+    },
+    {
+      "doi": "10.1136/bmjopen-2025-113110",
+      "title": "Effect of supplemental hydrocortisone during stress in prednisolone-induced adrenal insufficiency: a study protocol for a multicentre, randomised, double-blinded, placebo-controlled clinical trial on health-related quality of life in patients with polymyalgia rheumatica/giant cell arteritis on low-dose prednisolone treatment (the RESCUE study)",
+      "authors": [
+        "Stina Willemoes Borresen",
+        "Simon Bøggild Hansen",
+        "Hajir Al-Jorani",
+        "Randi Tei",
+        "Anja Fenger Dreyer",
+        "Victor Brun Boesen",
+        "Lise Sofie Bislev",
+        "Nanna Thurmann Jørgensen",
+        "Richard Christian Jensen",
+        "Marie Louise Lund Bjergstrøm",
+        "… (+8 more)"
+      ],
+      "journal": "BMJ Open",
       "year": 2026,
       "preprint": false
     },
@@ -97,6 +117,20 @@ window.NG_PUBLICATIONS = {
       "journal": "BMJ Open",
       "year": 2026,
       "preprint": false
+    },
+    {
+      "doi": "10.64898/2026.08.07.743463",
+      "title": "Menstrual cycle phase length variation is associated with daily symptom burden",
+      "authors": [
+        "Lisette J. A. Kogelman",
+        "David Westergaard",
+        "Karina Banasik",
+        "Henriette Svarre Nielsen",
+        "Thomas Folkmann Hansen"
+      ],
+      "journal": "bioRxiv",
+      "year": 2026,
+      "preprint": true
     },
     {
       "doi": "10.1038/s41598-026-41941-1",
