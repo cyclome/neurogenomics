@@ -2,9 +2,29 @@
    Rebuilt by scripts/fetch_publications.mjs from the ORCID iDs in data/team.js,
    and weekly by .github/workflows/publications.yml. */
 window.NG_PUBLICATIONS = {
-  "generated": "2026-08-17T05:01:05.396Z",
-  "count": 299,
+  "generated": "2026-08-24T05:04:48.898Z",
+  "count": 300,
   "items": [
+    {
+      "doi": "10.1186/s10194-026-02386-z",
+      "title": "Adrenal gland dysfunction in males with cluster headache",
+      "authors": [
+        "Connar Stanley James Westgate",
+        "Tanja Lylloff",
+        "David Møbjerg Kristensen",
+        "Thomas Folkmann-Hansen",
+        "Nunu Lund",
+        "Mads Barloese",
+        "Marie-Louise Kulas Søborg",
+        "Sophie Bryde Laursen",
+        "Trine Holm Johannsen",
+        "Hanne Frederiksen",
+        "… (+3 more)"
+      ],
+      "journal": "The Journal of Headache and Pain",
+      "year": 2026,
+      "preprint": false
+    },
     {
       "doi": "10.1111/apm.70235",
       "title": "Effect of Hormonal Contraceptives on Circulating Biomarkers of Inflammation, Chemotaxis, Angiogenesis, and Vascular Stress",
@@ -122,7 +142,7 @@ window.NG_PUBLICATIONS = {
       "doi": "10.64898/2026.08.07.743463",
       "title": "Menstrual cycle phase length variation is associated with daily symptom burden",
       "authors": [
-        "Lisette J. A. Kogelman",
+        "Lisette J.A. Kogelman",
         "David Westergaard",
         "Karina Banasik",
         "Henriette Svarre Nielsen",
