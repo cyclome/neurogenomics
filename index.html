@@ -170,7 +170,23 @@
         Newest first, compiled automatically from the group members' ORCID records
         and Crossref metadata. <span id="pub-stamp" class="muted"></span>
       </p>
+
+      <div class="pub-toolbar reveal" style="--delay:160ms">
+        <div class="pub-filter" id="pub-filter" role="group" aria-label="Filter publications by topic">
+          <button class="pub-filter-btn active" data-filter="all" aria-pressed="true">All</button>
+          <button class="pub-filter-btn" data-filter="gwas" aria-pressed="false">GWAS</button>
+          <button class="pub-filter-btn" data-filter="migraine" aria-pressed="false">Migraine</button>
+          <button class="pub-filter-btn" data-filter="dbds-chb" aria-pressed="false">DBDS/CHB consortium</button>
+          <button class="pub-filter-btn" data-filter="pgc" aria-pressed="false">PGC</button>
+          <button class="pub-filter-btn" data-filter="headache" aria-pressed="false">Headache</button>
+          <button class="pub-filter-btn" data-filter="multiomics" aria-pressed="false">Multiomics</button>
+          <button class="pub-filter-btn" data-filter="cyclome" aria-pressed="false">Cyclome</button>
+        </div>
+        <span class="pub-count" id="pub-count"></span>
+      </div>
+
       <div id="pub-list" class="pubs"></div>
+      <p class="no-results" id="pub-no-results" hidden>No publications match this filter.</p>
       <p id="pub-more-wrap" class="center" hidden>
         <button class="btn btn-quiet" id="pub-more" type="button">Show all publications</button>
       </p>
@@ -228,6 +244,7 @@
 <script src="data/projects.js"></script>
 <script src="data/funders.js"></script>
 <script src="data/publications.js"></script>
+<script src="data/publication-tags.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

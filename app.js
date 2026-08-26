@@ -305,6 +305,28 @@
 
   /* ── publications ──────────────────────────────────────────────────────── */
 
+  // Best-effort topic tags from the title alone. "dbds-chb", "pgc" and
+  // "cyclome" mostly can't be told from a title, so they rely on
+  // data/publication-tags.js instead — see that file's header comment.
+  var AUTO_TAG_RULES = [
+    [/genome-wide association|\bgwas\b/i, 'gwas'],
+    [/migraine/i, 'migraine'],
+    [/headache/i, 'headache'],
+    [/multi-?omics?\b/i, 'multiomics'],
+    [/danish blood donor/i, 'dbds-chb']
+  ];
+
+  function tagsFor(p) {
+    var tags = [];
+    AUTO_TAG_RULES.forEach(function (rule) {
+      if (rule[0].test(p.title)) tags.push(rule[1]);
+    });
+    (window.NG_PUBLICATION_TAGS && window.NG_PUBLICATION_TAGS[p.doi] || []).forEach(function (t) {
+      if (tags.indexOf(t) === -1) tags.push(t);
+    });
+    return tags;
+  }
+
   // Bold the group's own members in the author string.
   function authorLine(authors, memberNames) {
     var p = el('p', 'pub-authors');
@@ -352,13 +374,16 @@
     var list = document.getElementById('pub-list');
     if (!list) return;
     var data = window.NG_PUBLICATIONS || {};
-    var items = data.items || [];
     var section = list.closest('section');
     var stamp = document.getElementById('pub-stamp');
     var moreWrap = document.getElementById('pub-more-wrap');
     var moreBtn = document.getElementById('pub-more');
+    var countEl = document.getElementById('pub-count');
+    var noResultsEl = document.getElementById('pub-no-results');
+    var filterBtns = Array.prototype.slice.call(document.querySelectorAll('.pub-filter-btn'));
 
-    if (!items.length) { section.hidden = true; return; }
+    var entries = (data.items || []).map(function (p) { return { pub: p, tags: tagsFor(p) }; });
+    if (!entries.length) { section.hidden = true; return; }
     section.hidden = false;
 
     if (stamp && data.generated) {
@@ -366,37 +391,68 @@
     }
 
     var memberNames = (window.NG_TEAM || []).map(function (p) { return p.name; });
+    var activeFilter = 'all';
+    var expanded = false;
 
-    function paint(limit) {
+    function visible() {
+      if (activeFilter === 'all') return entries;
+      return entries.filter(function (x) { return x.tags.indexOf(activeFilter) !== -1; });
+    }
+
+    function paint() {
+      var filtered = visible();
+      var collapse = activeFilter === 'all' && !expanded && filtered.length > PUBS_COLLAPSED;
+      var shown = collapse ? filtered.slice(0, PUBS_COLLAPSED) : filtered;
+
       list.textContent = '';
-      var shown = limit ? items.slice(0, limit) : items;
       var currentYear = null;
-      shown.forEach(function (p) {
-        var y = p.year || 'Undated';
+      shown.forEach(function (x) {
+        var y = x.pub.year || 'Undated';
         if (y !== currentYear) {
           currentYear = y;
           list.appendChild(el('p', 'pub-year reveal', String(y)));
         }
-        list.appendChild(pubNode(p, memberNames));
+        list.appendChild(pubNode(x.pub, memberNames));
       });
       watchReveal(list);
+
+      if (countEl) {
+        countEl.textContent = filtered.length + (filtered.length === 1 ? ' publication' : ' publications');
+      }
+      if (noResultsEl) noResultsEl.hidden = filtered.length !== 0;
+
+      if (moreWrap && moreBtn) {
+        if (activeFilter === 'all' && filtered.length > PUBS_COLLAPSED) {
+          moreWrap.hidden = false;
+          moreBtn.textContent = expanded ? 'Show fewer' : 'Show all ' + filtered.length + ' publications';
+        } else {
+          moreWrap.hidden = true;
+        }
+      }
     }
 
-    var expanded = items.length <= PUBS_COLLAPSED;
-    paint(expanded ? 0 : PUBS_COLLAPSED);
-
-    if (!expanded && moreWrap && moreBtn) {
-      moreWrap.hidden = false;
-      moreBtn.textContent = 'Show all ' + items.length + ' publications';
+    if (moreBtn) {
       moreBtn.addEventListener('click', function () {
         expanded = !expanded;
-        paint(expanded ? 0 : PUBS_COLLAPSED);
-        moreBtn.textContent = expanded
-          ? 'Show fewer'
-          : 'Show all ' + items.length + ' publications';
+        paint();
         if (!expanded) section.scrollIntoView({ block: 'start' });
       });
     }
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        filterBtns.forEach(function (b) {
+          var on = b === btn;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        activeFilter = btn.dataset.filter;
+        expanded = false;
+        paint();
+      });
+    });
+
+    paint();
   }
 
   /* ── go ────────────────────────────────────────────────────────────────── */

@@ -32,5 +32,6 @@ window.NG_COLLABORATORS = [
   { name: 'Anders Juul', affiliation: 'Professor, Copenhagen University Hospital', url: 'https://orcid.org/0000-0002-0534-4350' },
   { name: 'Nicolai J. Wewer Albrechtsen', affiliation: 'Professor, Bispebjerg Hospital', url: 'https://orcid.org/0000-0003-4230-5753' },
   { name: 'Annelaura Bach Nielsen', affiliation: 'Associate Professor, Bispebjerg Hospital', url: 'https://scholar.google.com/citations?hl=en&user=sK4xp5oAAAAJ' },
-  { name: 'Dale Nyholt', affiliation: 'Professor, Queensland University of Technology', url: 'https://orcid.org/0000-0001-7159-3040' }
+  { name: 'Dale Nyholt', affiliation: 'Professor, Queensland University of Technology', url: 'https://orcid.org/0000-0001-7159-3040' },
+  { name: 'Rikke Steensbjerre Møller', affiliation: 'Professor, Danish Epilepsy Centre Filadelfia', url: 'https://orcid.org/0000-0002-9664-1448' }
 ];
