@@ -46,6 +46,8 @@
   <nav class="topbar-nav" aria-label="Sections">
     <a href="#research">Research</a>
     <a href="#team">Team</a>
+    <a href="#collaborators">Collaborators</a>
+    <a href="#projects">Projects</a>
     <a href="#publications">Publications</a>
     <a href="#funding">Funding</a>
     <a href="#contact">Contact</a>
@@ -133,6 +135,32 @@
     </div>
   </section>
 
+  <!-- ── Collaborators ──────────────────────────────────────────────────── -->
+  <section id="collaborators" class="band" hidden>
+    <div class="wrap">
+      <p class="eyebrow reveal">Collaborators</p>
+      <h2 class="reveal" style="--delay:60ms">Who we work with</h2>
+
+      <div id="consortia-wrap" hidden>
+        <div class="cards" id="consortia-grid"></div>
+      </div>
+
+      <div id="collab-wrap" hidden>
+        <h3 class="collab-heading reveal">Individual collaborators</h3>
+        <ul class="collab-list" id="collab-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ───────────────────────────────────────────────────────── -->
+  <section id="projects" class="band band-alt" hidden>
+    <div class="wrap">
+      <p class="eyebrow reveal">Projects</p>
+      <h2 class="reveal" style="--delay:60ms">Current projects</h2>
+      <div class="cards" id="project-grid"></div>
+    </div>
+  </section>
+
   <!-- ── Publications ───────────────────────────────────────────────────── -->
   <section id="publications" class="band">
     <div class="wrap">
@@ -196,6 +224,8 @@
 
 <script src="data/team.js"></script>
 <script src="data/alumni.js"></script>
+<script src="data/collaborators.js"></script>
+<script src="data/projects.js"></script>
 <script src="data/funders.js"></script>
 <script src="data/publications.js"></script>
 <script src="app.js"></script>

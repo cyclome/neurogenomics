@@ -21,6 +21,8 @@ CNAME               neurogenomic.dk
 data/
   team.js           current members  ← drives the publication list
   alumni.js         former members
+  collaborators.js  external consortia and individual collaborators
+  projects.js       current projects
   funders.js        funders and collaborators
   publications.js   GENERATED — do not edit by hand
 assets/

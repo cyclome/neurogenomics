@@ -379,6 +379,33 @@ a:hover { text-decoration-thickness: 2px; }
 .alumnus > a:hover { border-bottom-color: var(--accent); }
 .alumnus-role { color: var(--ink-2); font-size: 0.85em; }
 
+/* ── collaborators ───────────────────────────────────────────────────────── */
+
+.collab-heading {
+  margin: clamp(2.75rem, 7vh, 4.5rem) 0 1.25rem;
+  padding-top: clamp(2.75rem, 7vh, 4.5rem);
+  border-top: 1px solid var(--line);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.collab-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.6rem 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  font-size: 0.92rem;
+}
+.collaborator { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: baseline; }
+.collaborator > a { text-decoration: none; border-bottom: 1px solid transparent; color: var(--ink); }
+.collaborator > a:hover { border-bottom-color: var(--accent); }
+.collaborator-meta { color: var(--ink-2); font-size: 0.85em; }
+
 /* ── publications ────────────────────────────────────────────────────────── */
 
 .pubs { margin-top: clamp(2rem, 5vh, 3rem); }
@@ -435,9 +462,10 @@ a:hover { text-decoration-thickness: 2px; }
   margin-top: clamp(2rem, 5vh, 3rem);
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: clamp(1.5rem, 4vw, 3rem);
 }
+.funder { display: flex; flex-direction: column; gap: 0.35rem; max-width: 18rem; }
 .funders a, .funders span { display: block; }
 .funders img {
   height: 2.75rem;
@@ -450,6 +478,7 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .funders a:hover img { filter: none; opacity: 1; }
 .funder-text { font-weight: 550; color: var(--ink-2); }
+.funder-grant { font-size: 0.78rem; color: var(--ink-2); }
 
 /* ── contact ─────────────────────────────────────────────────────────────── */
 

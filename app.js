@@ -175,6 +175,93 @@
     watchReveal(wrap);
   }
 
+  /* ── collaborators ─────────────────────────────────────────────────────── */
+
+  function renderCollaborators() {
+    var section = document.getElementById('collaborators');
+    if (!section) return;
+    var consortia = window.NG_CONSORTIA || [];
+    var people = window.NG_COLLABORATORS || [];
+    if (!consortia.length && !people.length) return;   // stays hidden
+    section.hidden = false;
+
+    var consortiaWrap = document.getElementById('consortia-wrap');
+    var consortiaGrid = document.getElementById('consortia-grid');
+    if (consortia.length) {
+      consortiaWrap.hidden = false;
+      consortia.forEach(function (c, i) {
+        var card = el('article', 'card reveal');
+        card.style.setProperty('--delay', Math.min(i, 8) * 80 + 'ms');
+        var heading = c.url ? el('a', null, c.name) : null;
+        if (heading) {
+          heading.href = c.url;
+          heading.rel = 'noopener';
+          heading.target = '_blank';
+          var h3 = el('h3');
+          h3.appendChild(heading);
+          card.appendChild(h3);
+        } else {
+          card.appendChild(el('h3', null, c.name));
+        }
+        if (c.role) card.appendChild(el('p', 'role', c.role));
+        if (c.blurb) card.appendChild(el('p', null, c.blurb));
+        consortiaGrid.appendChild(card);
+      });
+      watchReveal(consortiaGrid);
+    }
+
+    var collabWrap = document.getElementById('collab-wrap');
+    var collabList = document.getElementById('collab-list');
+    if (people.length) {
+      collabWrap.hidden = false;
+      people.forEach(function (p) {
+        var li = el('li', 'collaborator');
+        if (p.url) {
+          var a = el('a', null, p.name);
+          a.href = p.url;
+          a.rel = 'noopener';
+          a.target = '_blank';
+          li.appendChild(a);
+        } else {
+          li.appendChild(el('span', null, p.name));
+        }
+        if (p.affiliation) li.appendChild(el('span', 'collaborator-meta', p.affiliation));
+        collabList.appendChild(li);
+      });
+      watchReveal(collabWrap);
+    }
+  }
+
+  /* ── projects ──────────────────────────────────────────────────────────── */
+
+  function renderProjects() {
+    var grid = document.getElementById('project-grid');
+    var items = window.NG_PROJECTS || [];
+    if (!grid) return;
+    var section = grid.closest('section');
+    if (!items.length) { section.hidden = true; return; }
+    section.hidden = false;
+
+    items.forEach(function (p, i) {
+      var card = el('article', 'card reveal');
+      card.style.setProperty('--delay', Math.min(i, 8) * 80 + 'ms');
+      var heading = p.url ? el('a', null, p.name) : null;
+      if (heading) {
+        heading.href = p.url;
+        heading.rel = 'noopener';
+        heading.target = '_blank';
+        var h3 = el('h3');
+        h3.appendChild(heading);
+        card.appendChild(h3);
+      } else {
+        card.appendChild(el('h3', null, p.name));
+      }
+      card.appendChild(el('p', null, p.blurb));
+      grid.appendChild(card);
+    });
+    watchReveal(grid);
+  }
+
   /* ── funders ───────────────────────────────────────────────────────────── */
 
   function renderFunders() {
@@ -207,9 +294,11 @@
       } else {
         holder = node;
       }
-      holder.classList.add('reveal');
-      holder.style.setProperty('--delay', Math.min(i, 8) * 60 + 'ms');
-      grid.appendChild(holder);
+      var wrap = el('div', 'funder reveal');
+      wrap.style.setProperty('--delay', Math.min(i, 8) * 60 + 'ms');
+      wrap.appendChild(holder);
+      if (f.grant) wrap.appendChild(el('span', 'funder-grant', f.grant));
+      grid.appendChild(wrap);
     });
     watchReveal(grid);
   }
@@ -316,6 +405,8 @@
   initTopbar();
   renderTeam();
   renderAlumni();
+  renderCollaborators();
+  renderProjects();
   renderFunders();
   renderPublications();
 
