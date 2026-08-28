@@ -63,5 +63,11 @@ window.NG_TEAM = [
     bio: 'Builds the Menstrual Multiomics Atlas within the Cyclome project.',
     orcid: '0000-0003-3755-7745',
     photo: null
+  },
+  {
+    name: 'Tanya Ramdal Techlo',
+    role: 'PhD student',
+    orcid: '0000-0002-0869-3652',
+    photo: null
   }
 ];

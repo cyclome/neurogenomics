@@ -17,7 +17,6 @@
 window.NG_ALUMNI = [
   { name: 'Ólafur B. Davíðsson',      role: 'PhD',      orcid: '0000-0002-7226-5409' },
   { name: 'Ragnar Pétur Kristjansson', role: 'PhD',      orcid: '0000-0002-3678-5693' },
-  { name: 'Tanya Ramdal Techlo',      role: 'PhD',      orcid: '0000-0002-0869-3652' },
   { name: 'Ann-Louise Esserlind',     role: 'PhD',      orcid: '0000-0001-9561-3595' },
   { name: 'Andreas Høiberg Rasmussen', role: 'Postdoc', orcid: '0000-0002-0504-2598' },
   { name: 'Jes Olesen',               role: 'Brain Prize Winner, Professor Emeratus', orcid: '0000-0002-6712-2702' }

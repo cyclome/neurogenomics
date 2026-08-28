@@ -379,6 +379,31 @@ a:hover { text-decoration-thickness: 2px; }
 .alumnus > a:hover { border-bottom-color: var(--accent); }
 .alumnus-role { color: var(--ink-2); font-size: 0.85em; }
 
+/* ── master's students ───────────────────────────────────────────────────── */
+
+.masters-heading {
+  margin: clamp(2.75rem, 7vh, 4.5rem) 0 1.25rem;
+  padding-top: clamp(2.75rem, 7vh, 4.5rem);
+  border-top: 1px solid var(--line);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.masters-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.6rem 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  font-size: 0.92rem;
+}
+.master { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: baseline; }
+.master-degree { color: var(--ink-2); font-size: 0.85em; }
+
 /* ── collaborators ───────────────────────────────────────────────────────── */
 
 .collab-heading {

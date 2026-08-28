@@ -21,6 +21,7 @@ CNAME               neurogenomic.dk
 data/
   team.js           current members  ← drives the publication list
   alumni.js         former members
+  masters.js        previous master's/MD thesis students (names only)
   collaborators.js  external consortia and individual collaborators
   projects.js       current projects
   funders.js        funders and collaborators
@@ -141,9 +142,7 @@ records are included with the domains.
 
 - [ ] Confirm the ORCID iDs in `data/team.js` are the right people
 - [ ] Real bios for Thomas Folkmann Hansen and Lisette J. A. Kogelman (marked `[…]`)
-- [ ] Postal address in the Contact section of `index.html` (marked `[…]`)
 - [ ] Portraits in `assets/team/`
-- [ ] Funders in `data/funders.js`
 - [ ] `og-image.png` — 1200×630, for link previews in Slack, LinkedIn and the like.
       Export it from the logo artwork, then uncomment the `og:image` and
       `twitter:card` tags in the `<head>` of `index.html`. Until then previews

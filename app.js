@@ -175,6 +175,25 @@
     watchReveal(wrap);
   }
 
+  /* ── master's students ────────────────────────────────────────────────── */
+
+  function renderMasters() {
+    var list = document.getElementById('masters-list');
+    var wrap = document.getElementById('masters-wrap');
+    var people = window.NG_MASTERS || [];
+    if (!list || !wrap) return;
+    if (!people.length) { wrap.hidden = true; return; }
+    wrap.hidden = false;
+
+    people.forEach(function (p) {
+      var li = el('li', 'master');
+      li.appendChild(el('span', null, p.name));
+      if (p.degree) li.appendChild(el('span', 'master-degree', p.degree));
+      list.appendChild(li);
+    });
+    watchReveal(wrap);
+  }
+
   /* ── collaborators ─────────────────────────────────────────────────────── */
 
   function renderCollaborators() {
@@ -461,6 +480,7 @@
   initTopbar();
   renderTeam();
   renderAlumni();
+  renderMasters();
   renderCollaborators();
   renderProjects();
   renderFunders();
