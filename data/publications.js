@@ -2,8 +2,8 @@
    Rebuilt by scripts/fetch_publications.mjs from the ORCID iDs in data/team.js,
    and weekly by .github/workflows/publications.yml. */
 window.NG_PUBLICATIONS = {
-  "generated": "2026-08-24T05:04:48.898Z",
-  "count": 300,
+  "generated": "2026-08-28T14:12:33.056Z",
+  "count": 301,
   "items": [
     {
       "doi": "10.1186/s10194-026-02386-z",
@@ -174,6 +174,27 @@ window.NG_PUBLICATIONS = {
       "preprint": false
     },
     {
+      "doi": "10.1038/s41591-026-04492-6",
+      "title": "The genetic architecture of fibromyalgia across 2.5 million individuals",
+      "authors": [
+        "Isabel Kerrebijn",
+        "Gyda Bjornsdottir",
+        "Keon Arbabi",
+        "Lea Urpa",
+        "Hele Haapaniemi",
+        "Gudmar Thorleifsson",
+        "Lilja Stefansdottir",
+        "Stephan Frangakis",
+        "Jesse Valliere",
+        "Lovemore Kunorozva",
+        "… (+49 more)",
+        "Thomas F. Hansen"
+      ],
+      "journal": "Nature Medicine",
+      "year": 2026,
+      "preprint": false
+    },
+    {
       "doi": "10.1016/j.eclinm.2026.103928",
       "title": "The role of genetic liability for psychiatric disorders and personality traits in post covid syndrome: data from three Nordic population cohorts",
       "authors": [
@@ -187,8 +208,9 @@ window.NG_PUBLICATIONS = {
         "Anna Bára Unnarsdóttir",
         "Arna Hauksdóttir",
         "Bitten Aagaard",
-        "… (+54 more)",
+        "… (+53 more)",
         "Lisette kogelman",
+        "Tanya Techlo",
         "Thomas F. Hansen"
       ],
       "journal": "eClinicalMedicine",
