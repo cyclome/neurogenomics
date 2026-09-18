@@ -12,6 +12,7 @@
 window.NG_PROJECTS = [
   {
     name: 'Cyclome',
+    url: 'https://cyclome.dk',
     blurb: 'A suite of collaborative studies mapping the biology of the menstrual ' +
       'cycle. It began as a study of the mechanisms behind menstrual migraine, funded ' +
       'by the Independent Research Fund Denmark and Rigshospitalet’s research funds, ' +
@@ -24,6 +25,7 @@ window.NG_PROJECTS = [
   },
   {
     name: 'CycleView & CycleDay',
+    url: 'https://cyclome.dk',
     blurb: 'Two nationwide epidemiological studies of menstrual cycle variability and ' +
       'its impact on women’s health. Rather than averaging cycle differences away, ' +
       'they treat cycle-to-cycle variability itself as the object of study — in short, ' +
@@ -37,6 +39,7 @@ window.NG_PROJECTS = [
   },
   {
     name: 'Danish Blood Donor Genomic Consortium',
+    url: 'https://dbds.dk',
     blurb: 'Neurogenomics has been part of the Danish Blood Donor Study’s research ' +
       'group almost since Professor Ullum established it in 2010. In 2018 we launched ' +
       'its genomics consortium together with deCODE genetics, building a large ' +
