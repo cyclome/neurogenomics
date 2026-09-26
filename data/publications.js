@@ -2,7 +2,7 @@
    Rebuilt by scripts/fetch_publications.mjs from the ORCID iDs in data/team.js,
    and weekly by .github/workflows/publications.yml. */
 window.NG_PUBLICATIONS = {
-  "generated": "2026-08-28T14:12:33.056Z",
+  "generated": "2026-09-26T08:49:31.559Z",
   "count": 301,
   "items": [
     {
@@ -208,9 +208,8 @@ window.NG_PUBLICATIONS = {
         "Anna Bára Unnarsdóttir",
         "Arna Hauksdóttir",
         "Bitten Aagaard",
-        "… (+53 more)",
+        "… (+54 more)",
         "Lisette kogelman",
-        "Tanya Techlo",
         "Thomas F. Hansen"
       ],
       "journal": "eClinicalMedicine",
