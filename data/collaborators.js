@@ -33,5 +33,9 @@ window.NG_COLLABORATORS = [
   { name: 'Nicolai J. Wewer Albrechtsen', affiliation: 'Professor, Bispebjerg Hospital', url: 'https://orcid.org/0000-0003-4230-5753' },
   { name: 'Annelaura Bach Nielsen', affiliation: 'Associate Professor, Bispebjerg Hospital', url: 'https://scholar.google.com/citations?hl=en&user=sK4xp5oAAAAJ' },
   { name: 'Dale Nyholt', affiliation: 'Professor, Queensland University of Technology', url: 'https://orcid.org/0000-0001-7159-3040' },
-  { name: 'Rikke Steensbjerre Møller', affiliation: 'Professor, Danish Epilepsy Centre Filadelfia', url: 'https://orcid.org/0000-0002-9664-1448' }
+  { name: 'Rikke Steensbjerre Møller', affiliation: 'Professor, Danish Epilepsy Centre Filadelfia', url: 'https://orcid.org/0000-0002-9664-1448' },
+  { name: 'Karina Banasik', affiliation: 'Associate Professor, Amager and Hvidovre Hospital / TUH', url: 'https://orcid.org/0000-0003-2489-2499' },
+  { name: 'Ole Birger Pedersen', affiliation: 'Professor, Zealand University Hospital', url: 'https://orcid.org/0000-0003-2312-5976' },
+  { name: 'Tina Dysgaard', affiliation: 'Senior Researcher, Rigshospitalet', url: 'https://research.ku.dk/search/result/profile/?id=b11febf9-7c40-4418-a7bd-ee948176d2b7' },
+  { name: 'Stine Maarbjerg', affiliation: 'MD, PhD, Danish Headache Center, Rigshospitalet', url: 'https://research.regionh.dk/en/persons/stine-maarbjerg' }
 ];

@@ -27,28 +27,28 @@ window.NG_TEAM = [
     bio: '[One or two sentences: background, what you work on, what you are known for.]',
     orcid: '0000-0001-6703-7762',
     email: 'thomas.folkmann.hansen@regionh.dk',
-    photo: null
+    photo: 'assets/team/thomas-folkmann-hansen.jpg'
   },
   {
     name: 'Lisette J. A. Kogelman',
     role: 'Senior bioinformatician',
     bio: '[Short description — e.g. multi-omics integration and the analysis pipelines behind the group\'s genetic studies.]',
     orcid: '0000-0001-9782-7810',
-    photo: null
+    photo: 'assets/team/lisette-kogelman.jpg'
   },
   {
     name: 'Isa Amalie Olofsson',
     role: 'MD, PhD',
     bio: 'Project lead for the Migraine Twins Study and the Child and Adolescent Headache Biobank.',
     orcid: '0000-0002-7500-8045',
-    photo: null
+    photo: 'assets/team/isa-amalie-olofsson.jpg'
   },
   {
     name: 'Mona Ameri Chalmer',
     role: 'MD, PhD',
     bio: 'Currently on leave for clinical residency training in neurology.',
     orcid: '0000-0003-4609-1895',
-    photo: null
+    photo: 'assets/team/mona-ameri-chalmer.jpg'
   },
   {
     name: 'Marie Louise Lund Bjergstrøm',
@@ -62,12 +62,6 @@ window.NG_TEAM = [
     role: 'MD, PhD student',
     bio: 'Builds the Menstrual Multiomics Atlas within the Cyclome project.',
     orcid: '0000-0003-3755-7745',
-    photo: null
-  },
-  {
-    name: 'Tanya Ramdal Techlo',
-    role: 'PhD student',
-    orcid: '0000-0002-0869-3652',
     photo: null
   }
 ];
