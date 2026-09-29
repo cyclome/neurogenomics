@@ -36,6 +36,8 @@ window.NG_COLLABORATORS = [
   { name: 'Rikke Steensbjerre Møller', affiliation: 'Professor, Danish Epilepsy Centre Filadelfia', url: 'https://orcid.org/0000-0002-9664-1448' },
   { name: 'Karina Banasik', affiliation: 'Associate Professor, Amager and Hvidovre Hospital / TUH', url: 'https://orcid.org/0000-0003-2489-2499' },
   { name: 'Ole Birger Pedersen', affiliation: 'Professor, Zealand University Hospital', url: 'https://orcid.org/0000-0003-2312-5976' },
-  { name: 'Tina Dysgaard', affiliation: 'Senior Researcher, Rigshospitalet', url: 'https://research.ku.dk/search/result/profile/?id=b11febf9-7c40-4418-a7bd-ee948176d2b7' },
-  { name: 'Stine Maarbjerg', affiliation: 'MD, PhD, Danish Headache Center, Rigshospitalet', url: 'https://research.regionh.dk/en/persons/stine-maarbjerg' }
+  { name: 'Tina Dysgaard', affiliation: 'Professor, Department of Neurology, Rigshospitalet', url: 'https://research.ku.dk/search/result/profile/?id=b11febf9-7c40-4418-a7bd-ee948176d2b7' },
+  { name: 'Stine Maarbjerg', affiliation: 'MD, PhD, Bodil Eskesen Center, Rigshospitalet', url: 'https://research.regionh.dk/en/persons/stine-maarbjerg' },
+  { name: 'Karina Meden Sørensen', affiliation: 'Section Head, Danish National Biobank, Statens Serum Institut', url: 'https://en.ssi.dk/about-us/contact/employees/k/karina-meden-soerensen-kms' },
+  { name: 'Kristoffer Sølvsten Burgdorf', affiliation: 'Associate Professor, Statens Serum Institut & University of Copenhagen', url: 'https://orcid.org/0000-0001-5814-6844' }
 ];
