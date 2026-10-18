@@ -16,7 +16,7 @@
 window.NG_MASTERS = [
   { name: 'Astrid Olesen', degree: 'MD' },
   { name: 'Ida Callesen', degree: 'MSc' },
-  { name: 'Rikke Møller', degree: 'MSc' },
+  { name: 'Rikke Louise Jacobsen', degree: 'MSc' },
   { name: 'Christine Hansen', degree: 'MD' },
   { name: 'Juliane Beauchamp', degree: 'MD' },
   { name: 'Mia Nelander', degree: 'MD' },
@@ -24,5 +24,6 @@ window.NG_MASTERS = [
   { name: 'Mikkel Ammentorp Storm', degree: 'MSc' },
   { name: 'Tanya Techlo', degree: 'MSc' },
   { name: 'Julie Ravn', degree: 'MD' },
-  { name: 'Mona Ameri Chalmer', degree: 'MD' }
+  { name: 'Mona Ameri Chalmer', degree: 'MD' },
+  { name: 'Anne Francke Christensen', degree: 'MD, PhD' }
 ];
