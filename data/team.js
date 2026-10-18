@@ -55,13 +55,13 @@ window.NG_TEAM = [
     role: 'MD, PhD student',
     bio: 'Studies ADHD symptoms within the Cyclome project.',
     orcid: '0009-0009-1929-7768',
-    photo: null
+    photo: 'assets/team/marie-louise-lund-bjergstrom.jpg'
   },
   {
     name: 'Anna Lando Talbot',
     role: 'MD, PhD student',
     bio: 'Builds the Menstrual Multiomics Atlas within the Cyclome project.',
     orcid: '0000-0003-3755-7745',
-    photo: null
+    photo: 'assets/team/anna-lando-talbot.jpg'
   }
 ];
