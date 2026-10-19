@@ -141,7 +141,6 @@ records are included with the domains.
 ## Still to do
 
 - [ ] Confirm the ORCID iDs in `data/team.js` are the right people
-- [ ] Real bios for Thomas Folkmann Hansen and Lisette J. A. Kogelman (marked `[…]`)
 - [ ] `og-image.png` — 1200×630, for link previews in Slack, LinkedIn and the like.
       Export it from the logo artwork, then uncomment the `og:image` and
       `twitter:card` tags in the `<head>` of `index.html`. Until then previews

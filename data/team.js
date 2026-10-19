@@ -38,7 +38,7 @@ window.NG_TEAM = [
   {
     name: 'Lisette J. A. Kogelman',
     role: 'Senior bioinformatician',
-    bio: '[Short description — e.g. multi-omics integration and the analysis pipelines behind the group\'s genetic studies.]',
+    bio: 'Project lead for the Menstrual Multiomics Atlas, with a focus on multimodal analysis of human multi-omics data.',
     orcid: '0000-0001-9782-7810',
     photo: 'assets/team/lisette-kogelman.jpg'
   },
@@ -59,7 +59,7 @@ window.NG_TEAM = [
   {
     name: 'Thomas Folkmann Hansen',
     role: 'Group leader',
-    bio: '[One or two sentences: background, what you work on, what you are known for.]',
+    bio: 'Professor in translational genomics, with a focus on generating knowledge that aids precision medicine in the treatment of neurological disorders.',
     orcid: '0000-0001-6703-7762',
     email: 'thomas.folkmann.hansen@regionh.dk',
     photo: 'assets/team/thomas-folkmann-hansen.jpg'
