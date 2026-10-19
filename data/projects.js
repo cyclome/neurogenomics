@@ -24,7 +24,7 @@ window.NG_PROJECTS = [
       'other countries running similarly dense temporal designs, are planned.'
   },
   {
-    name: 'CycleView & CycleDay',
+    name: 'CycloView & CycloDay',
     url: 'https://cyclome.dk',
     blurb: 'Two nationwide epidemiological studies of menstrual cycle variability and ' +
       'its impact on women’s health. Rather than averaging cycle differences away, ' +
