@@ -22,19 +22,11 @@
 
 window.NG_TEAM = [
   {
-    name: 'Thomas Folkmann Hansen',
-    role: 'Group leader',
-    bio: '[One or two sentences: background, what you work on, what you are known for.]',
-    orcid: '0000-0001-6703-7762',
-    email: 'thomas.folkmann.hansen@regionh.dk',
-    photo: 'assets/team/thomas-folkmann-hansen.jpg'
-  },
-  {
-    name: 'Lisette J. A. Kogelman',
-    role: 'Senior bioinformatician',
-    bio: '[Short description — e.g. multi-omics integration and the analysis pipelines behind the group\'s genetic studies.]',
-    orcid: '0000-0001-9782-7810',
-    photo: 'assets/team/lisette-kogelman.jpg'
+    name: 'Anna Lando Talbot',
+    role: 'MD, PhD student',
+    bio: 'Builds the Menstrual Multiomics Atlas within the Cyclome project.',
+    orcid: '0000-0003-3755-7745',
+    photo: 'assets/team/anna-lando-talbot.jpg'
   },
   {
     name: 'Isa Amalie Olofsson',
@@ -44,11 +36,11 @@ window.NG_TEAM = [
     photo: 'assets/team/isa-amalie-olofsson.jpg'
   },
   {
-    name: 'Mona Ameri Chalmer',
-    role: 'MD, PhD',
-    bio: 'Currently on leave for clinical residency training in neurology.',
-    orcid: '0000-0003-4609-1895',
-    photo: 'assets/team/mona-ameri-chalmer.jpg'
+    name: 'Lisette J. A. Kogelman',
+    role: 'Senior bioinformatician',
+    bio: '[Short description — e.g. multi-omics integration and the analysis pipelines behind the group\'s genetic studies.]',
+    orcid: '0000-0001-9782-7810',
+    photo: 'assets/team/lisette-kogelman.jpg'
   },
   {
     name: 'Marie Louise Lund Bjergstrøm',
@@ -58,10 +50,18 @@ window.NG_TEAM = [
     photo: 'assets/team/marie-louise-lund-bjergstrom.jpg'
   },
   {
-    name: 'Anna Lando Talbot',
-    role: 'MD, PhD student',
-    bio: 'Builds the Menstrual Multiomics Atlas within the Cyclome project.',
-    orcid: '0000-0003-3755-7745',
-    photo: 'assets/team/anna-lando-talbot.jpg'
+    name: 'Mona Ameri Chalmer',
+    role: 'MD, PhD',
+    bio: 'Currently on leave for clinical residency training in neurology.',
+    orcid: '0000-0003-4609-1895',
+    photo: 'assets/team/mona-ameri-chalmer.jpg'
+  },
+  {
+    name: 'Thomas Folkmann Hansen',
+    role: 'Group leader',
+    bio: '[One or two sentences: background, what you work on, what you are known for.]',
+    orcid: '0000-0001-6703-7762',
+    email: 'thomas.folkmann.hansen@regionh.dk',
+    photo: 'assets/team/thomas-folkmann-hansen.jpg'
   }
 ];
