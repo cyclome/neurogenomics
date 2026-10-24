@@ -2,7 +2,7 @@
    Rebuilt by scripts/fetch_publications.mjs from the ORCID iDs in data/team.js,
    and weekly by .github/workflows/publications.yml. */
 window.NG_PUBLICATIONS = {
-  "generated": "2026-09-26T08:49:31.559Z",
+  "generated": "2026-10-24T08:52:22.387Z",
   "count": 301,
   "items": [
     {
@@ -5163,7 +5163,7 @@ window.NG_PUBLICATIONS = {
     },
     {
       "doi": "10.1002/ajmg.b.31030",
-      "title": "Association between methylenetetrahydrofolate reductase (MTHFR) C677T polymorphism and age of onset in schizophrenia",
+      "title": "Association between methylenetetrahydrofolate reductase ( MTHFR ) C677T polymorphism and age of onset in schizophrenia",
       "authors": [
         "Maria Vares",
         "Peter Saetre",
