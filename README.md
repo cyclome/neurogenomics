@@ -143,15 +143,15 @@ records are included with the domains.
 `class/` is a self-contained, anonymous live-polling tool for teaching — separate
 from the rest of the site, with its own stylesheet (it doesn't use the main site's
 colours or layout). Students submit at **neurogenomic.dk/class**, you project
-**neurogenomic.dk/class_display?s=CODE**.
+**neurogenomic.dk/class/class_display?s=CODE**.
 
 ```
 class/
-  class.html          submission form
-  class_display.html  projector view — polls every 5s, click a card to expand it
-  style.css            shared dark, high-contrast styling for both pages
-  config.js            Supabase project URL + anon key — fill these in
-  schema.sql            run once in the Supabase SQL editor to create the table
+  index.html           submission form (named index.html so /class resolves to it)
+  class_display.html   projector view — polls every 5s, click a card to expand it
+  style.css             shared dark, high-contrast styling for both pages
+  config.js             Supabase project URL + anon key — fill these in
+  schema.sql             run once in the Supabase SQL editor to create the table
 ```
 
 **One-time setup:** create a free Supabase project, run `class/schema.sql` in its
@@ -162,7 +162,7 @@ page source — access control lives in the Row Level Security policies in
 
 **Each class:** pick a session code (anything short, e.g. `BIO101`), share
 `neurogenomic.dk/class?s=BIO101` with students (the code prefills from `?s=`, or
-they can type it), and project `neurogenomic.dk/class_display?s=BIO101`.
+they can type it), and project `neurogenomic.dk/class/class_display?s=BIO101`.
 Submissions are anonymous and there's no admin/delete UI — clear old rows from the
 Supabase table editor between classes, or just use a fresh session code each time.
 
