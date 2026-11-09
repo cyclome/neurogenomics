@@ -32,6 +32,13 @@ create policy "anon can read" on submissions
   for select to anon
   using (true);
 
+-- admin.html signs in (authenticated role), so it needs its own read policy —
+-- "anon can read" above doesn't cover it.
+drop policy if exists "authenticated can read" on submissions;
+create policy "authenticated can read" on submissions
+  for select to authenticated
+  using (true);
+
 -- Editing/deleting is restricted to a logged-in (authenticated) user — see
 -- class/admin.html. Without this, anyone holding the anon key (which is
 -- public, it ships in the page source) could wipe the table.
