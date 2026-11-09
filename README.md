@@ -149,7 +149,8 @@ colours or layout). Students submit at **neurogenomic.dk/class**, you project
 class/
   index.html           submission form (named index.html so /class resolves to it)
   class_display.html   projector view — polls every 5s, click a card to expand it
-  style.css             shared dark, high-contrast styling for both pages
+  admin.html            password-protected: edit a wrong session code, delete a row
+  style.css             shared dark, high-contrast styling for all three pages
   config.js             Supabase project URL + anon key — fill these in
   schema.sql             run once in the Supabase SQL editor to create the table
 ```
@@ -157,12 +158,22 @@ class/
 **One-time setup:** create a free Supabase project, run `class/schema.sql` in its
 SQL editor, then copy the project URL and anon/public key from Project Settings →
 API into `class/config.js`. The anon key is meant to be public — it ships in the
-page source — access control lives in the Row Level Security policies in
-`schema.sql`, not in keeping it secret.
+page source — access control for *reading and submitting* lives in the Row Level
+Security policies in `schema.sql`, not in keeping it secret.
+
+Editing and deleting rows is **not** governed by the anon key at all — anyone
+holding it could otherwise wipe the table — so `schema.sql` also restricts
+`update`/`delete` to a logged-in (authenticated) user, and `admin.html` requires
+signing in with a real Supabase Auth account. Create that account once:
+Supabase dashboard → **Authentication → Users → Add user**, set an email and
+password, and tick **Auto Confirm User** (skips email verification). Sign in at
+`neurogenomic.dk/class/admin.html` with those same credentials.
 
 **Each class:** pick a session code (anything short, e.g. `BIO101`), share
 `neurogenomic.dk/class?s=BIO101` with students (the code prefills from `?s=`, or
-they can type it), and project `neurogenomic.dk/class/class_display?s=BIO101`.
+they can type it), and project `neurogenomic.dk/class/class_display?s=BIO101`. If
+a group mistypes the code, fix it (or delete the row) at
+`neurogenomic.dk/class/admin.html`.
 Submissions are anonymous and there's no admin/delete UI — clear old rows from the
 Supabase table editor between classes, or just use a fresh session code each time.
 

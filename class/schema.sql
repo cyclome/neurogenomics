@@ -22,13 +22,32 @@ create index if not exists submissions_session_code_idx
 -- anything sensitive in the free-text fields.
 alter table submissions enable row level security;
 
+drop policy if exists "anon can insert" on submissions;
 create policy "anon can insert" on submissions
   for insert to anon
   with check (true);
 
+drop policy if exists "anon can read" on submissions;
 create policy "anon can read" on submissions
   for select to anon
   using (true);
+
+-- Editing/deleting is restricted to a logged-in (authenticated) user — see
+-- class/admin.html. Without this, anyone holding the anon key (which is
+-- public, it ships in the page source) could wipe the table.
+drop policy if exists "authenticated can update" on submissions;
+create policy "authenticated can update" on submissions
+  for update to authenticated
+  using (true) with check (true);
+
+drop policy if exists "authenticated can delete" on submissions;
+create policy "authenticated can delete" on submissions
+  for delete to authenticated
+  using (true);
+
+-- One-time: create your own login for class/admin.html — Authentication →
+-- Users → Add user, enter an email + password, and tick "Auto Confirm User"
+-- so no email verification step is needed.
 
 -- Optional: enable Realtime instead of the 5s poll the display page uses by
 -- default. Database → Replication → add `submissions` to the

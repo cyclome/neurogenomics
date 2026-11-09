@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — Neurogenomics classroom</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="login-wrap" id="login-view">
+  <div class="login-card">
+    <h1>Admin sign in</h1>
+    <form id="login-form">
+      <div class="field">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" required autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="submit-btn" id="login-btn">Sign in</button>
+      <div class="status-msg" id="login-status"></div>
+    </form>
+  </div>
+</div>
+
+<div class="admin-wrap" id="admin-view" style="display:none;">
+  <div class="admin-head">
+    <h1>Submissions</h1>
+    <button class="signout-btn" id="signout-btn">Sign out</button>
+  </div>
+
+  <div class="admin-toolbar">
+    <input type="text" id="filter-input" placeholder="Filter by session code…">
+    <span class="admin-count"><strong id="row-count">0</strong> shown</span>
+  </div>
+
+  <div id="rows"></div>
+  <p class="empty-state" id="empty-state" style="display:none;">No submissions yet.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+(function () {
+  const cfg = window.NG_CLASS_CONFIG;
+  const supabase = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+
+  const loginView = document.getElementById('login-view');
+  const adminView = document.getElementById('admin-view');
+  const loginForm = document.getElementById('login-form');
+  const loginStatus = document.getElementById('login-status');
+  const loginBtn = document.getElementById('login-btn');
+  const signoutBtn = document.getElementById('signout-btn');
+  const filterInput = document.getElementById('filter-input');
+  const rowsEl = document.getElementById('rows');
+  const emptyState = document.getElementById('empty-state');
+  const rowCount = document.getElementById('row-count');
+
+  let allRows = [];
+
+  function escapeHtml(s) {
+    const div = document.createElement('div');
+    div.textContent = s || '';
+    return div.innerHTML;
+  }
+
+  function showLogin() {
+    loginView.style.display = 'flex';
+    adminView.style.display = 'none';
+  }
+
+  function showAdmin() {
+    loginView.style.display = 'none';
+    adminView.style.display = 'block';
+    load();
+  }
+
+  loginForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    loginBtn.disabled = true;
+    loginBtn.textContent = 'Signing in…';
+    const { error } = await supabase.auth.signInWithPassword({
+      email: document.getElementById('login-email').value.trim(),
+      password: document.getElementById('login-password').value
+    });
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Sign in';
+    if (error) {
+      loginStatus.textContent = error.message;
+      loginStatus.className = 'status-msg show err';
+      return;
+    }
+    showAdmin();
+  });
+
+  signoutBtn.addEventListener('click', async function () {
+    await supabase.auth.signOut();
+    showLogin();
+  });
+
+  function render() {
+    const filter = filterInput.value.trim().toLowerCase();
+    const rows = filter
+      ? allRows.filter(function (r) { return (r.session_code || '').toLowerCase().includes(filter); })
+      : allRows;
+
+    rowCount.textContent = rows.length;
+    emptyState.style.display = rows.length ? 'none' : 'block';
+
+    rowsEl.innerHTML = rows.map(function (r) {
+      const detail = [
+        r.hypothesis ? '<div class="detail"><b>Hypothesis</b> — ' + escapeHtml(r.hypothesis) + '</div>' : '',
+        r.data_source ? '<div class="detail"><b>Data source</b> — ' + escapeHtml(r.data_source) + '</div>' : '',
+        r.study_plan ? '<div class="detail"><b>Study plan</b> — ' + escapeHtml(r.study_plan) + '</div>' : ''
+      ].join('');
+      return (
+        '<div class="admin-row" data-id="' + r.id + '">' +
+          '<div class="admin-row-top">' +
+            '<input type="text" class="session-input" value="' + escapeHtml(r.session_code) + '">' +
+            '<button class="save-btn" data-action="save">Save code</button>' +
+            (r.group_name ? '<span class="group-tag">' + escapeHtml(r.group_name) + '</span>' : '') +
+            '<button class="del-btn" data-action="delete">Delete</button>' +
+          '</div>' +
+          '<div class="admin-row-body">' +
+            '<div class="aim">' + escapeHtml(r.aim) + '</div>' +
+            detail +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+  }
+
+  rowsEl.addEventListener('click', async function (e) {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    const row = btn.closest('.admin-row');
+    const id = row.getAttribute('data-id');
+
+    if (btn.dataset.action === 'save') {
+      const input = row.querySelector('.session-input');
+      const newCode = input.value.trim();
+      if (!newCode) return;
+      btn.textContent = 'Saving…';
+      const { error } = await supabase.from('submissions').update({ session_code: newCode }).eq('id', id);
+      if (error) {
+        alert('Could not save: ' + error.message);
+        btn.textContent = 'Save code';
+        return;
+      }
+      const r = allRows.find(function (x) { return x.id === id; });
+      if (r) r.session_code = newCode;
+      btn.textContent = 'Saved';
+      btn.classList.add('saved');
+      setTimeout(function () { btn.textContent = 'Save code'; btn.classList.remove('saved'); }, 1500);
+    }
+
+    if (btn.dataset.action === 'delete') {
+      if (!confirm('Delete this submission? This cannot be undone.')) return;
+      const { error } = await supabase.from('submissions').delete().eq('id', id);
+      if (error) {
+        alert('Could not delete: ' + error.message);
+        return;
+      }
+      allRows = allRows.filter(function (x) { return x.id !== id; });
+      render();
+    }
+  });
+
+  filterInput.addEventListener('input', render);
+
+  async function load() {
+    const { data, error } = await supabase
+      .from('submissions')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) {
+      console.error(error);
+      return;
+    }
+    allRows = data || [];
+    render();
+  }
+
+  (async function init() {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) {
+      showAdmin();
+    } else {
+      showLogin();
+    }
+  })();
+})();
+</script>
+</body>
+</html>
