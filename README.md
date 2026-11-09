@@ -138,6 +138,34 @@ serves one domain per `CNAME` file, so a separate repo per domain is the only wa
 it on Pages. one.com charges for web forwarding; this costs nothing, and plain DNS
 records are included with the domains.
 
+## Classroom submission tool
+
+`class/` is a self-contained, anonymous live-polling tool for teaching — separate
+from the rest of the site, with its own stylesheet (it doesn't use the main site's
+colours or layout). Students submit at **neurogenomic.dk/class**, you project
+**neurogenomic.dk/class_display?s=CODE**.
+
+```
+class/
+  class.html          submission form
+  class_display.html  projector view — polls every 5s, click a card to expand it
+  style.css            shared dark, high-contrast styling for both pages
+  config.js            Supabase project URL + anon key — fill these in
+  schema.sql            run once in the Supabase SQL editor to create the table
+```
+
+**One-time setup:** create a free Supabase project, run `class/schema.sql` in its
+SQL editor, then copy the project URL and anon/public key from Project Settings →
+API into `class/config.js`. The anon key is meant to be public — it ships in the
+page source — access control lives in the Row Level Security policies in
+`schema.sql`, not in keeping it secret.
+
+**Each class:** pick a session code (anything short, e.g. `BIO101`), share
+`neurogenomic.dk/class?s=BIO101` with students (the code prefills from `?s=`, or
+they can type it), and project `neurogenomic.dk/class_display?s=BIO101`.
+Submissions are anonymous and there's no admin/delete UI — clear old rows from the
+Supabase table editor between classes, or just use a fresh session code each time.
+
 ## Still to do
 
 - [ ] Confirm the ORCID iDs in `data/team.js` are the right people

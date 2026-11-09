@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Submit — Neurogenomics classroom</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="submit-wrap">
+  <div class="submit-card">
+    <h1>Submit your group's answer</h1>
+    <p class="sub">Anonymous — no names needed. One submission per group.</p>
+
+    <form id="submit-form">
+      <div class="field">
+        <label for="session-code">Session code</label>
+        <input type="text" id="session-code" required autocomplete="off" placeholder="e.g. BIO101">
+      </div>
+
+      <div class="field">
+        <label for="group-name">Group name <span class="hint">(optional)</span></label>
+        <input type="text" id="group-name" autocomplete="off" placeholder="e.g. Group 4">
+      </div>
+
+      <div class="field">
+        <label for="aim">Research aim</label>
+        <textarea id="aim" required placeholder="What question are you trying to answer?"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="hypothesis">Hypothesis</label>
+        <textarea id="hypothesis" placeholder="What do you expect to find, and why?"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="data-source">Data source</label>
+        <textarea id="data-source" placeholder="Where would the data come from?"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="study-plan">Study plan</label>
+        <textarea id="study-plan" placeholder="How would you carry this out?"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Submit</button>
+
+      <div class="status-msg" id="status-msg"></div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+(function () {
+  const cfg = window.NG_CLASS_CONFIG;
+  const supabase = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+
+  const form = document.getElementById('submit-form');
+  const sessionInput = document.getElementById('session-code');
+  const submitBtn = document.getElementById('submit-btn');
+  const statusEl = document.getElementById('status-msg');
+
+  const params = new URLSearchParams(location.search);
+  const prefilled = params.get('s');
+  if (prefilled) sessionInput.value = prefilled;
+
+  function showStatus(kind, text) {
+    statusEl.textContent = text;
+    statusEl.className = 'status-msg show ' + kind;
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+
+    const row = {
+      session_code: sessionInput.value.trim(),
+      group_name: document.getElementById('group-name').value.trim() || null,
+      aim: document.getElementById('aim').value.trim(),
+      hypothesis: document.getElementById('hypothesis').value.trim() || null,
+      data_source: document.getElementById('data-source').value.trim() || null,
+      study_plan: document.getElementById('study-plan').value.trim() || null
+    };
+
+    const { error } = await supabase.from('submissions').insert(row);
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit';
+
+    if (error) {
+      showStatus('err', 'Something went wrong — please try again. (' + error.message + ')');
+      return;
+    }
+
+    showStatus('ok', 'Thanks, submitted!');
+    const keepSession = sessionInput.value;
+    form.reset();
+    sessionInput.value = keepSession;
+  });
+})();
+</script>
+</body>
+</html>

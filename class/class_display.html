@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live results — Neurogenomics classroom</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="display-wrap">
+  <div class="display-head">
+    <h1>Research aims — <span class="session-tag" id="session-tag"></span></h1>
+    <div class="display-count"><strong id="count">0</strong> submitted</div>
+  </div>
+
+  <div class="card-grid" id="card-grid"></div>
+  <p class="empty-state" id="empty-state" style="display:none;">No submissions yet — waiting for groups to submit…</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+(function () {
+  const cfg = window.NG_CLASS_CONFIG;
+  const supabase = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+
+  const params = new URLSearchParams(location.search);
+  const sessionCode = params.get('s') || '';
+  document.getElementById('session-tag').textContent = sessionCode || '(no session code)';
+
+  const grid = document.getElementById('card-grid');
+  const countEl = document.getElementById('count');
+  const emptyState = document.getElementById('empty-state');
+
+  let expandedId = null;
+
+  function escapeHtml(s) {
+    const div = document.createElement('div');
+    div.textContent = s || '';
+    return div.innerHTML;
+  }
+
+  function render(rows) {
+    countEl.textContent = rows.length;
+    emptyState.style.display = rows.length ? 'none' : 'block';
+    grid.innerHTML = rows.map(function (r) {
+      const isExpanded = r.id === expandedId;
+      return (
+        '<div class="card' + (isExpanded ? ' expanded' : '') + '" data-id="' + r.id + '">' +
+          (r.group_name ? '<div class="card-group">' + escapeHtml(r.group_name) + '</div>' : '') +
+          '<div class="card-aim">' + escapeHtml(r.aim) + '</div>' +
+          '<dl class="card-detail">' +
+            (r.hypothesis ? '<div><dt>Hypothesis</dt><dd>' + escapeHtml(r.hypothesis) + '</dd></div>' : '') +
+            (r.data_source ? '<div><dt>Data source</dt><dd>' + escapeHtml(r.data_source) + '</dd></div>' : '') +
+            (r.study_plan ? '<div><dt>Study plan</dt><dd>' + escapeHtml(r.study_plan) + '</dd></div>' : '') +
+          '</dl>' +
+        '</div>'
+      );
+    }).join('');
+  }
+
+  grid.addEventListener('click', function (e) {
+    const card = e.target.closest('.card');
+    if (!card) return;
+    const id = card.getAttribute('data-id');
+    expandedId = (expandedId === id) ? null : id;
+    card.parentElement.querySelectorAll('.card').forEach(function (c) {
+      c.classList.toggle('expanded', c.getAttribute('data-id') === expandedId);
+    });
+  });
+
+  async function load() {
+    const { data, error } = await supabase
+      .from('submissions')
+      .select('*')
+      .eq('session_code', sessionCode)
+      .order('created_at', { ascending: true });
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+    render(data || []);
+  }
+
+  load();
+  setInterval(load, 5000);
+})();
+</script>
+</body>
+</html>
