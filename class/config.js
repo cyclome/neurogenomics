@@ -8,6 +8,6 @@
    ========================================================================== */
 
 window.NG_CLASS_CONFIG = {
-  supabaseUrl: 'https://YOUR-PROJECT.supabase.co',
-  supabaseAnonKey: 'YOUR-ANON-KEY'
+  supabaseUrl: 'https://aaoduuhgwijwzqmsepka.supabase.co',
+  supabaseAnonKey: 'sb_publishable_2laWVcqm2BYk0ceDdHtw4A_htDxC2UT'
 };
