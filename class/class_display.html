@@ -24,7 +24,12 @@
 <script>
 (function () {
   const cfg = window.NG_CLASS_CONFIG;
-  const supabase = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+  // Same reasoning as index.html: this page only reads as the public anon
+  // role, so it must not pick up a leftover admin.html login via the
+  // domain-wide localStorage the Supabase client would otherwise use.
+  const supabase = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
+  });
 
   const params = new URLSearchParams(location.search);
   const sessionCode = params.get('s') || '';

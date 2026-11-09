@@ -57,7 +57,13 @@
 <script>
 (function () {
   const cfg = window.NG_CLASS_CONFIG;
-  const supabase = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+  // This page only ever submits as the public anon role, never as a logged-in
+  // admin — persistSession/autoRefreshToken are off so it can't pick up a
+  // leftover admin.html login from localStorage (shared across the domain)
+  // and get its requests rejected by the RLS policies meant for admins only.
+  const supabase = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
+  });
 
   const form = document.getElementById('submit-form');
   const sessionInput = document.getElementById('session-code');
